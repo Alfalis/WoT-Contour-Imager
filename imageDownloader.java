@@ -10,13 +10,13 @@ public class imageDownloader implements Runnable {
 		int size = 0;
 		String url = null;
 		String text;
-		//do the following for all selected tank types:
 		for (int tt = 0; tt < UIClass.tanktypes4download.length; tt++){
 			String type = UIClass.tanktypes4download[tt];
 			try {
 				size = APIClass.generateArrayList(APIClass.accessAPI(), type).size();
 			} catch (JSONException e){
 				e.printStackTrace();
+				UIClass.imagesDownloaded_label.setText("Something went wrong while downloading, please restart WoT Contour Imager and try again");
 			}
 			for (int i = 0; i < size; i++){
 				try {
@@ -24,6 +24,7 @@ public class imageDownloader implements Runnable {
 					ImageClass.saveBufferedImage(ImageClass.tintImage(url, type), url, UtilitiesClass.getSetting("filepath"));
 				} catch (ConfigurationException | IOException | JSONException e){
 					e.printStackTrace();
+					UIClass.imagesDownloaded_label.setText("Something went wrong while downloading, please restart WoT Contour Imager and try again");
 				}
 				UIClass.imagesDownloaded++;
 				text = "(" + String.format("%03d", UIClass.imagesDownloaded) + "/" + UIClass.imagesToDownload + " images downloaded - " + size + " " + UIClass.tanktypes4combobox[tt] + ")";
@@ -36,6 +37,7 @@ public class imageDownloader implements Runnable {
 		UIClass.slider_green.setEnabled(true);
 		UIClass.slider_blue.setEnabled(true);
 		UIClass.downloadimages_button.setEnabled(true);
+		UIClass.imagesDownloaded_label.setText("(" + String.format("%03d", UIClass.imagesDownloaded) + "/" + UIClass.imagesToDownload + " images downloaded) - Finished!");
 	}
 
 }

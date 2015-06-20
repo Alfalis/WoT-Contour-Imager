@@ -72,7 +72,7 @@ public class UIClass {
 		pathfield.setEditable(false);
 		final JFileChooser fc = new JFileChooser();
 		
-		changepath_button = new JButton("path");
+		changepath_button = new JButton("Path");
 		changepath_button.setPreferredSize(new Dimension(60,25));
 		changepath_button.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
@@ -293,6 +293,8 @@ public class UIClass {
 				slider_green.setEnabled(false);
 				slider_blue.setEnabled(false);
 				downloadimages_button.setEnabled(false);
+				imagesDownloaded = 0;
+				imagesDownloaded_label.setText("(" + String.format("%03d", imagesDownloaded) + "/" + imagesToDownload + " images downloaded)");
 				Thread t1 = new Thread (new imageDownloader());
 				t1.start();
 				mainframe.requestFocus();

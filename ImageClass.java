@@ -9,6 +9,7 @@ import java.io.OutputStream;
 import java.net.URL;
 import javax.imageio.ImageIO;
 import org.apache.commons.configuration.ConfigurationException;
+import org.apache.commons.configuration.XMLConfiguration;
 
 public class ImageClass {
 	
@@ -23,43 +24,39 @@ public class ImageClass {
 	
 	public static BufferedImage tintImage(String url, String type) throws IOException, ConfigurationException{
 		//Feed me a url and a tank type and I'll tint that bitch - result is the tinted BufferedImage
-		//Some old stuff is commented out due to change to GUI version, kept for reference
 		URL url_internal = new URL(url);
 		double red_multiplier = 0;
 		double green_multiplier = 0;
 		double blue_multiplier = 0;
 		InputStream in = new BufferedInputStream(url_internal.openStream());
 		BufferedImage bi = ImageIO.read(in);
-		//XMLConfiguration settings = new XMLConfiguration("ContourImager_Settings.xml");
+		XMLConfiguration settings = new XMLConfiguration("ContourImager_Settings.xml");
         
         switch (type){
         	case "heavyTank":
-        			red_multiplier = UIClass.slider_red.getValue() * 0.1;
-        			green_multiplier = UIClass.slider_green.getValue() * 0.1;
-        			blue_multiplier = UIClass.slider_blue.getValue() * 0.1;
-					//red_multiplier = settings.getDouble("color_multipliers.heavyTank.red");
-					//green_multiplier = settings.getDouble("color_multipliers.heavyTank.green");
-					//blue_multiplier = settings.getDouble("color_multipliers.heavyTank.blue");
+					red_multiplier = settings.getDouble("color_multipliers.heavyTank.red");
+					green_multiplier = settings.getDouble("color_multipliers.heavyTank.green");
+					blue_multiplier = settings.getDouble("color_multipliers.heavyTank.blue");
         		break;
         	case "mediumTank":
-	        		red_multiplier = UIClass.slider_red.getValue() * 0.1;
-	    			green_multiplier = UIClass.slider_green.getValue() * 0.1;
-	    			blue_multiplier = UIClass.slider_blue.getValue() * 0.1;
+				red_multiplier = settings.getDouble("color_multipliers.mediumTank.red");
+				green_multiplier = settings.getDouble("color_multipliers.mediumTank.green");
+				blue_multiplier = settings.getDouble("color_multipliers.mediumTank.blue");
         		break;
         	case "lightTank":
-	        		red_multiplier = UIClass.slider_red.getValue() * 0.1;
-	    			green_multiplier = UIClass.slider_green.getValue() * 0.1;
-	    			blue_multiplier = UIClass.slider_blue.getValue() * 0.1;
+				red_multiplier = settings.getDouble("color_multipliers.lightTank.red");
+				green_multiplier = settings.getDouble("color_multipliers.lightTank.green");
+				blue_multiplier = settings.getDouble("color_multipliers.lightTank.blue");
         		break;
         	case "AT-SPG":
-	        		red_multiplier = UIClass.slider_red.getValue() * 0.1;
-	    			green_multiplier = UIClass.slider_green.getValue() * 0.1;
-	    			blue_multiplier = UIClass.slider_blue.getValue() * 0.1;
+				red_multiplier = settings.getDouble("color_multipliers.AT-SPG.red");
+				green_multiplier = settings.getDouble("color_multipliers.AT-SPG.green");
+				blue_multiplier = settings.getDouble("color_multipliers.AT-SPG.blue");
         		break;
         	case "SPG":
-	        		red_multiplier = UIClass.slider_red.getValue() * 0.1;
-	    			green_multiplier = UIClass.slider_green.getValue() * 0.1;
-	    			blue_multiplier = UIClass.slider_blue.getValue() * 0.1;
+				red_multiplier = settings.getDouble("color_multipliers.SPG.red");
+				green_multiplier = settings.getDouble("color_multipliers.SPG.green");
+				blue_multiplier = settings.getDouble("color_multipliers.SPG.blue");
         		break;
         }
 
@@ -103,20 +100,15 @@ public class ImageClass {
 	
 	public static BufferedImage tintImage(BufferedImage bi, String type) throws IOException, ConfigurationException{
 		//Feed me a BufferedImage and a tank type and I'll tint that bitch - result is the tinted BufferedImage
-		//Some old stuff is commented out due to change to GUI version, kept for reference
 		double red_multiplier = 0;
 		double green_multiplier = 0;
 		double blue_multiplier = 0;
-		//XMLConfiguration settings = new XMLConfiguration("ContourImager_Settings.xml");
         
         switch (type){
         	case "heavyTank":
         			red_multiplier = UIClass.slider_red.getValue() * 0.1;
         			green_multiplier = UIClass.slider_green.getValue() * 0.1;
         			blue_multiplier = UIClass.slider_blue.getValue() * 0.1;
-					//red_multiplier = settings.getDouble("color_multipliers.heavyTank.red");
-					//green_multiplier = settings.getDouble("color_multipliers.heavyTank.green");
-					//blue_multiplier = settings.getDouble("color_multipliers.heavyTank.blue");
         		break;
         	case "mediumTank":
 	        		red_multiplier = UIClass.slider_red.getValue() * 0.1;
