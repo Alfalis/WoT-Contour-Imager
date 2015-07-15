@@ -34,9 +34,9 @@ public class ImageClass {
         
         switch (type){
         	case "heavyTank":
-					red_multiplier = settings.getDouble("color_multipliers.heavyTank.red");
-					green_multiplier = settings.getDouble("color_multipliers.heavyTank.green");
-					blue_multiplier = settings.getDouble("color_multipliers.heavyTank.blue");
+				red_multiplier = settings.getDouble("color_multipliers.heavyTank.red");
+				green_multiplier = settings.getDouble("color_multipliers.heavyTank.green");
+				blue_multiplier = settings.getDouble("color_multipliers.heavyTank.blue");
         		break;
         	case "mediumTank":
 				red_multiplier = settings.getDouble("color_multipliers.mediumTank.red");

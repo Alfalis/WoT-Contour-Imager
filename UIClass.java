@@ -283,6 +283,7 @@ public class UIClass {
 			public void actionPerformed(ActionEvent e){
 				try {
 					UtilitiesClass.saveSettings();
+					UtilitiesClass.generateFolder();
 					saveButtonChanger();
 					restoreButtonChanger();
 				} catch (ConfigurationException e1) {

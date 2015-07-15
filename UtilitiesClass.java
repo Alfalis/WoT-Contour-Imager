@@ -1,3 +1,4 @@
+import java.io.File;
 import java.io.IOException;
 import org.apache.commons.configuration.ConfigurationException;
 import org.apache.commons.configuration.XMLConfiguration;
@@ -71,7 +72,8 @@ public class UtilitiesClass {
 			XMLConfiguration settings = new XMLConfiguration("ContourImager_Settings.xml");			
 		} catch (ConfigurationException e){
 			XMLConfiguration settings = new XMLConfiguration();
-			settings.setProperty("filepath", "C:/Games/World_of_Tanks/res_mods/0.9.8.1/gui/maps/icons/vehicle/contour");
+			settings.setRootElementName("settings");
+			settings.setProperty("filepath", "C:/Games/World_of_Tanks/res_mods/0.9.9/gui/maps/icons/vehicle/contour");
 			settings.setProperty("color_multipliers.heavyTank.red", 1.3);
 			settings.setProperty("color_multipliers.heavyTank.green", 0.8);
 			settings.setProperty("color_multipliers.heavyTank.blue", 0.5);
@@ -89,6 +91,13 @@ public class UtilitiesClass {
 			settings.setProperty("color_multipliers.SPG.blue", 0.6);
 			settings.setFileName("ContourImager_Settings.xml");
 			settings.save();
+		}
+	}
+	
+	public static void generateFolder(){
+		File path = new File(UIClass.pathfield.getText());
+		if (!path.exists()){
+			path.mkdirs();
 		}
 	}
 
